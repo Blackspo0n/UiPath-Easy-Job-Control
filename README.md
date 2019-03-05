@@ -1,2 +1,2 @@
 # UiPath-Easy-Job-Control
-This tool helps zu start Jobs easyly from a native client
+This tool helps to start Jobs easyly from a native client
