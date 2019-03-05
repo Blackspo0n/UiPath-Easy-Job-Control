@@ -1,0 +1,156 @@
+﻿<metro:MetroWindow x:Class="UiPathEJC.UserInterfaces.Windows.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:windows="clr-namespace:UiPathEJC.UserInterfaces.Windows"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:viewModels="clr-namespace:UiPathEJC.UserInterfaces.Windows.ViewModels"
+        xmlns:converters="clr-namespace:UiPathEJC.Components.Converters"
+        xmlns:validationRules="clr-namespace:UiPathEJC.Components.ValidationRules"
+        x:Name="LogiViewWindow"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Height="550" Width="400"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        GlowBrush="{DynamicResource AccentColorBrush}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource BrushesUiPathColor}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        TitleCharacterCasing="Normal"
+        TitleAlignment="Center"
+        TitlebarHeight="35"
+        ShowDialogsOverTitleBar="True"
+        Icon="../../Resources/Styles/Images/UiPath-Logo.png"
+        ShowMaxRestoreButton="False"
+        NonActiveWindowTitleBrush="{DynamicResource BrushesUiPathColor}"
+        d:DataContext="{d:DesignInstance viewModels:DesignLoginViewModel, d:IsDesignTimeCreatable=True}"><!--MinHeight="550" MinWidth="400" MaxHeight="550" MaxWidth="400"-->
+    <Window.Title>
+        <DynamicResource ResourceKey="OrchestratorAuth" />
+    </Window.Title>
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="ToVisibilityConverter" />
+        <converters:InvertBoolConverter x:Key="InvertBoolConverter" />
+    </Window.Resources>
+    <materialDesign:DialogHost Margin="0,-35,0,0" x:Name="LoginDialogHost"
+                               IsOpen="{Binding Path=IsDialogOpen}" 
+                               DialogContent="{Binding Path=DialogContent}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="85"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Content="Easy Job Control" Foreground="White" HorizontalAlignment="Center" VerticalContentAlignment="Center" FontWeight="DemiBold" FontSize="32" Padding="0,35,0,0"></Label>
+
+            <materialDesign:Card Grid.Row="1" Padding="16" Margin="16" UseLayoutRounding="true" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Label Content="Login" Foreground="#ff54646c"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24"/>
+
+                    <TextBox Grid.Row="1" Margin="0,10"
+                        materialDesign:HintAssist.Hint="Orchestrator URL" 
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                        <TextBox.Text>
+                            <Binding Path="OrchestratorInstance" ValidatesOnDataErrors="True" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <validationRules:NotEmptyValidationRule ValidatesOnTargetUpdated="False" />
+                                    <validationRules:UriValidationRule ValidatesOnTargetUpdated="False" />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+
+                    <TextBox Grid.Row="2"
+                        materialDesign:HintAssist.Hint="Tenant Name"  Margin="0,10"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                        <TextBox.Text>
+                            <Binding Path="TenantName" ValidatesOnDataErrors="True" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <validationRules:NotEmptyValidationRule ValidatesOnTargetUpdated="False" />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+
+                    <TextBox Grid.Row="3"
+                         materialDesign:HintAssist.Hint="Username or E-Mail" Margin="0,10"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                        <TextBox.Text>
+                            <Binding Path="UserName" ValidatesOnDataErrors="True" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
+                                <Binding.ValidationRules>
+                                    <validationRules:NotEmptyValidationRule ValidatesOnTargetUpdated="False" />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+
+                    <PasswordBox Grid.Row="4" 
+                         materialDesign:HintAssist.Hint="Password" Margin="0,10"
+                         Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
+                         PasswordChanged="PasswordBox_OnPasswordChanged" metro:PasswordBoxHelper.CapsLockIcon="{StaticResource CheckMarkIcon}" 
+                         />
+
+                    <CheckBox Grid.Row="5" Content="Remember me?"  Margin="0,10"
+                          IsChecked="{Binding Path=AutoLogin}" />
+
+                    <Button  Command="{Binding Path=LoginCommand}"  Margin="10" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Center" Width="340">LOGIN</Button>
+
+                </Grid>
+            </materialDesign:Card>
+
+
+            <!--<Grid Background="#66999999" Visibility="{Binding Path=LoadingIndicator, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.RowSpan="2" Margin="0,0,0,0">
+                <ProgressBar
+                Foreground="{StaticResource AccentBaseColorBrush}"
+                Style="{StaticResource MaterialDesignCircularProgressBar}"
+                Value="0"
+                IsIndeterminate="True" Height="128" Opacity="1" VerticalAlignment="Center" Width="128" />
+            </Grid>-->
+
+        </Grid>
+    </materialDesign:DialogHost>
+
+    <metro:MetroWindow.IsCloseButtonEnabled>
+        <Binding Path="IsOpen" ElementName="LoginDialogHost" Converter="{StaticResource InvertBoolConverter}" IsAsync="True"/>
+    </metro:MetroWindow.IsCloseButtonEnabled>
+
+    <metro:MetroWindow.IsMinButtonEnabled>
+        <Binding Path="IsOpen" ElementName="LoginDialogHost" Converter="{StaticResource InvertBoolConverter}" IsAsync="True"/>
+    </metro:MetroWindow.IsMinButtonEnabled>
+
+    <metro:MetroWindow.IconTemplate>
+        <DataTemplate>
+            <Border Margin="1,1">
+                <Image Width="28" Height="28" VerticalAlignment="Center" HorizontalAlignment="Center" Source="Resources/Styles/Images/UiPath-Logo-inverted.png">
+                    <Image.Style>
+                        <Style TargetType="{x:Type Image}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding DataContext.IsDialogOpen, RelativeSource={RelativeSource AncestorType={x:Type windows:LoginWindow}}}" Value="True">
+                                    <Setter Property="Opacity" Value="0.3" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding DataContext.IsDialogOpen, RelativeSource={RelativeSource AncestorType={x:Type windows:LoginWindow}}}" Value="False">
+                                    <Setter Property="Opacity" Value="1" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+            </Border>
+        </DataTemplate>
+    </metro:MetroWindow.IconTemplate>
+</metro:MetroWindow>

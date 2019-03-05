@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="UiPathEJC.UserInterfaces.UserControls.ProcessItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:design="clr-namespace:UiPathEJC.UserInterfaces.UserControls.ViewModels.Design"
+             x:Name="ProcessBarControl"
+             xmlns:userControls="clr-namespace:UiPathEJC.UserInterfaces.UserControls"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance design:DesignProcessItemViewModel}"
+             d:DesignWidth="800">
+    <Grid>
+        <Border x:Name="Border">
+            <materialDesign:Card Padding="2" Margin="2" Height="Auto">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="{Binding Process.ProcessKey}" VerticalAlignment="Center" />
+                    <Label Grid.Column="1" Content="{Binding Process.EnvironmentName}"  VerticalAlignment="Center"/>
+
+                    <StackPanel Grid.Column="3" Orientation="Horizontal">
+                        <Button Padding="5" Style="{StaticResource MaterialDesignFlatButton}"
+                                Command="{Binding JobStart, ElementName=ProcessBarControl}"
+                                CommandParameter="{Binding}"        
+                        >
+                            <materialDesign:PackIcon Kind="Play" Height="24" Width="24" />
+                        </Button>
+                        <Button Padding="5" Style="{StaticResource MaterialDesignFlatButton}">
+                            <materialDesign:PackIcon Kind="InfoOutline" Height="24" Width="24" />
+                        </Button>
+                        <Button Padding="5" Style="{StaticResource MaterialDesignFlatButton}">
+                            <materialDesign:PackIcon Kind="DotsVerticalCircleOutline" Height="24" Width="24" />
+                        </Button>
+                    </StackPanel>
+                </Grid>
+
+            </materialDesign:Card>
+        </Border>
+    </Grid>
+</UserControl>

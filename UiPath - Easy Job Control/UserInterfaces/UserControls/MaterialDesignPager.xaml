@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="UiPathEJC.UserInterfaces.UserControls.MaterialDesignPager"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UiPathEJC.UserInterfaces.UserControls"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             x:Name="Pager"
+             mc:Ignorable="d" 
+             d:DesignHeight="60" d:DesignWidth="800">
+    <Border Background="#ffe9ebec" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.Column="0">
+                <Label VerticalAlignment="Center" Margin="5">
+                    Einträge:
+                </Label>
+
+                <ComboBox Margin="0,0" Width="40" Style="{StaticResource MaterialDesignComboBox}" 
+                          SelectedValue="{Binding ElementName=Pager, Path=SelectedValueOfItems, FallbackValue=10}" 
+                          ItemsSource="{Binding ElementName=Pager, Path=ListOfSelectedValueOfItems}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding ChangeSelectedValueOfItemsCommand, ElementName=Pager}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Style="{StaticResource MaterialDesignToolButton}" 
+                        Command="{Binding FirstPageCommand, ElementName=Pager}">
+                    <materialDesign:PackIcon Kind="SkipPrevious" Height="24" Width="24" />
+                </Button>
+                <Button Style="{StaticResource MaterialDesignToolButton}"
+                        Command="{Binding NavigateBackCommand, ElementName=Pager}">
+                    <materialDesign:PackIcon Kind="NavigateBefore" Height="24" Width="24" />
+                </Button>
+                <TextBlock VerticalAlignment="Center">
+                    <Label>Seite</Label>
+                    <Label Content="{Binding ElementName=Pager, Path=CurrentPage, FallbackValue='1'}" />
+                    <Label>/</Label>
+                    <Label Content="{Binding ElementName=Pager, Path=Pages, FallbackValue='1'}" />
+                </TextBlock>
+                <Button Style="{StaticResource MaterialDesignToolButton}"
+                        Command="{Binding NavigateNextCommand, ElementName=Pager}">
+                    <materialDesign:PackIcon Kind="NavigateNext" Height="24" Width="24" />
+                </Button>
+                <Button Style="{StaticResource MaterialDesignToolButton}"
+                        Command="{Binding LastPageCommand, ElementName=Pager}">
+                    <materialDesign:PackIcon Kind="SkipNext" Height="24" Width="24" />
+                </Button>
+            </StackPanel>
+
+            <TextBlock Grid.Column="2" TextAlignment="Right" VerticalAlignment="Center" Margin="5">
+                 <Label Content="{Binding ElementName=Pager, Path=ItemsCount, FallbackValue='0'}" />
+                 <Label>Einträge</Label>
+            </TextBlock>
+        </Grid>
+    </Border>
+</UserControl>
