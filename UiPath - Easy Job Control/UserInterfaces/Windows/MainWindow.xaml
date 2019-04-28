@@ -60,6 +60,7 @@
                              ShowShadow="False" Type="Default" ShowNavigationDrawerButton="false"
                              ShowBackButton="False" 
                              Title="{Binding Path=CurrentContent.ViewName}" Grid.RowSpan="2">
+
                 <controls:AppBar.AppIcon>
                     <materialDesign:PackIcon Margin="-5,-1,0,0" Width="30" Height="30" Kind="{Binding Path=CurrentContent.IconSource}"></materialDesign:PackIcon>
                 </controls:AppBar.AppIcon>
@@ -177,10 +178,10 @@
                     <Image.Style>
                         <Style TargetType="{x:Type Image}">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding DataContext.IsDialogOpen, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" Value="True">
+                                <DataTrigger Binding="{Binding DataContext.CurrentContent.IsDialogOpen, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" Value="True">
                                     <Setter Property="Opacity" Value="0.3" />
                                 </DataTrigger>
-                                <DataTrigger Binding="{Binding DataContext.IsDialogOpen, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" Value="False">
+                                <DataTrigger Binding="{Binding DataContext.CurrentContent.IsDialogOpen, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" Value="False">
                                     <Setter Property="Opacity" Value="1" />
                                 </DataTrigger>
                             </Style.Triggers>

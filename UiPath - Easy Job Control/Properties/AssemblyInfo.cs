@@ -53,3 +53,5 @@ using System.Windows;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: Guid("698dac97-8a29-4723-a228-55fa62a43451")]
+[assembly: NeutralResourcesLanguage("de-DE", UltimateResourceFallbackLocation.Satellite)]

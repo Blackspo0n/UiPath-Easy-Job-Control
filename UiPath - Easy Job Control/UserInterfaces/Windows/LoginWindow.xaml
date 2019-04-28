@@ -10,6 +10,7 @@
         xmlns:viewModels="clr-namespace:UiPathEJC.UserInterfaces.Windows.ViewModels"
         xmlns:converters="clr-namespace:UiPathEJC.Components.Converters"
         xmlns:validationRules="clr-namespace:UiPathEJC.Components.ValidationRules"
+        xmlns:resx="clr-namespace:UiPathEJC.Properties"
         x:Name="LogiViewWindow"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
@@ -24,15 +25,13 @@
         FontFamily="{DynamicResource MaterialDesignFont}"
         TitleCharacterCasing="Normal"
         TitleAlignment="Center"
-        TitlebarHeight="35"
+        TitlebarHeight="35" Title="{x:Static resx:Resources.OrchestratorAuth}"
         ShowDialogsOverTitleBar="True"
         Icon="../../Resources/Styles/Images/UiPath-Logo.png"
         ShowMaxRestoreButton="False"
         NonActiveWindowTitleBrush="{DynamicResource BrushesUiPathColor}"
-        d:DataContext="{d:DesignInstance viewModels:DesignLoginViewModel, d:IsDesignTimeCreatable=True}"><!--MinHeight="550" MinWidth="400" MaxHeight="550" MaxWidth="400"-->
-    <Window.Title>
-        <DynamicResource ResourceKey="OrchestratorAuth" />
-    </Window.Title>
+        d:DataContext="{d:DesignInstance viewModels:DesignLoginViewModel, d:IsDesignTimeCreatable=True}">
+
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="ToVisibilityConverter" />
         <converters:InvertBoolConverter x:Key="InvertBoolConverter" />
@@ -63,7 +62,7 @@
                     <Label Content="Login" Foreground="#ff54646c"  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24"/>
 
                     <TextBox Grid.Row="1" Margin="0,10"
-                        materialDesign:HintAssist.Hint="Orchestrator URL" 
+                        materialDesign:HintAssist.Hint="{x:Static resx:Resources.inputOrchestratorUri}" 
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}">
                         <TextBox.Text>
                             <Binding Path="OrchestratorInstance" ValidatesOnDataErrors="True" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
@@ -76,7 +75,7 @@
                     </TextBox>
 
                     <TextBox Grid.Row="2"
-                        materialDesign:HintAssist.Hint="Tenant Name"  Margin="0,10"
+                        materialDesign:HintAssist.Hint="{x:Static resx:Resources.inputTenant}"  Margin="0,10"
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}">
                         <TextBox.Text>
                             <Binding Path="TenantName" ValidatesOnDataErrors="True" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
@@ -88,7 +87,7 @@
                     </TextBox>
 
                     <TextBox Grid.Row="3"
-                         materialDesign:HintAssist.Hint="Username or E-Mail" Margin="0,10"
+                         materialDesign:HintAssist.Hint="{x:Static resx:Resources.inputPassword}" Margin="0,10"
                          Style="{StaticResource MaterialDesignFloatingHintTextBox}">
                         <TextBox.Text>
                             <Binding Path="UserName" ValidatesOnDataErrors="True" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
@@ -102,26 +101,16 @@
                     <PasswordBox Grid.Row="4" 
                          materialDesign:HintAssist.Hint="Password" Margin="0,10"
                          Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
-                         PasswordChanged="PasswordBox_OnPasswordChanged" metro:PasswordBoxHelper.CapsLockIcon="{StaticResource CheckMarkIcon}" 
-                         />
+                         PasswordChanged="PasswordBox_OnPasswordChanged" metro:PasswordBoxHelper.CapsLockIcon="{StaticResource CheckMarkIcon}"/>
 
-                    <CheckBox Grid.Row="5" Content="Remember me?"  Margin="0,10"
+                    <CheckBox Grid.Row="5" Content="{x:Static resx:Resources.inputRememberMe}"  Margin="0,10"
                           IsChecked="{Binding Path=AutoLogin}" />
 
-                    <Button  Command="{Binding Path=LoginCommand}"  Margin="10" Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Center" Width="340">LOGIN</Button>
+                    <Button Command="{Binding Path=LoginCommand}" IsDefault="True" Margin="10" Grid.Row="6"
+                            VerticalAlignment="Center" HorizontalAlignment="Center" Width="340" Content="{x:Static resx:Resources.btnLogin}" />
 
                 </Grid>
             </materialDesign:Card>
-
-
-            <!--<Grid Background="#66999999" Visibility="{Binding Path=LoadingIndicator, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.RowSpan="2" Margin="0,0,0,0">
-                <ProgressBar
-                Foreground="{StaticResource AccentBaseColorBrush}"
-                Style="{StaticResource MaterialDesignCircularProgressBar}"
-                Value="0"
-                IsIndeterminate="True" Height="128" Opacity="1" VerticalAlignment="Center" Width="128" />
-            </Grid>-->
-
         </Grid>
     </materialDesign:DialogHost>
 

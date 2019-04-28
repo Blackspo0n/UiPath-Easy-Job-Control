@@ -52,5 +52,12 @@ namespace UiPathEJC.Components.Settings
             get => (string)this[nameof(OrchestratorInstance)];
             set => this[nameof(OrchestratorInstance)] = (object)value;
         }
+        [UserScopedSetting()]
+        [DefaultSettingValue("de-DE")]
+        public string Culture
+        {
+            get => (string)this[nameof(Culture)];
+            set => this[nameof(Culture)] = (object)value;
+        }
     }
 }

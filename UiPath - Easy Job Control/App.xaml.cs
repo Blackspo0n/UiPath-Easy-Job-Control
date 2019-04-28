@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,29 +24,36 @@ namespace UiPathEJC
 
         async void OnAppStartUp(object sender, StartupEventArgs e)
         {
-            await SetLanguageDictionary();
+            await ApplyCulture();
 
-            await Initialize();
+            await Initialize(true);
 
 
             TaskbarIcon = FindResource("TrayIcon") as TaskbarIcon;
         }
 
-        private async Task SetLanguageDictionary()
+        private async Task ApplyCulture()
         {
-            ResourceDictionary dict = new ResourceDictionary();
-            switch (Thread.CurrentThread.CurrentCulture.ToString())
+            var settings = new ApplicationSettings();
+            CultureInfo ci;
+
+            try
             {
-                default:
-                    dict.Source = new Uri("..\\Resources\\Language\\StringResources.xaml", UriKind.Relative);
-                    break;
+                ci = new CultureInfo(settings.Culture);
+
+
+                Thread.CurrentThread.CurrentCulture = ci;
+                Thread.CurrentThread.CurrentUICulture = ci;
             }
-            Resources.MergedDictionaries.Add(dict);
+            catch (Exception)
+            {
+                ci = new CultureInfo("de-DE");
+            }
         }
 
         public async Task Initialize(bool TestMode)
         {
-            new FastStartTrayWindow().Show();
+            new LoginWindow().Show();
             
                 
         }

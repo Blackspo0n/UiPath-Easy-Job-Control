@@ -59,5 +59,113 @@ namespace UiPathEJC.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Abbrechen ähnelt.
+        /// </summary>
+        internal static string btnCancle {
+            get {
+                return ResourceManager.GetString("btnCancle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Schließen ähnelt.
+        /// </summary>
+        internal static string btnClose {
+            get {
+                return ResourceManager.GetString("btnClose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die  ähnelt.
+        /// </summary>
+        internal static string btnFD {
+            get {
+                return ResourceManager.GetString("btnFD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Login ähnelt.
+        /// </summary>
+        internal static string btnLogin {
+            get {
+                return ResourceManager.GetString("btnLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Speichern ähnelt.
+        /// </summary>
+        internal static string btnSave {
+            get {
+                return ResourceManager.GetString("btnSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Deutsch ähnelt.
+        /// </summary>
+        internal static string CurrentLanguage {
+            get {
+                return ResourceManager.GetString("CurrentLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Orchestrator Url ähnelt.
+        /// </summary>
+        internal static string inputOrchestratorUri {
+            get {
+                return ResourceManager.GetString("inputOrchestratorUri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Passwort ähnelt.
+        /// </summary>
+        internal static string inputPassword {
+            get {
+                return ResourceManager.GetString("inputPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Den Login merken? ähnelt.
+        /// </summary>
+        internal static string inputRememberMe {
+            get {
+                return ResourceManager.GetString("inputRememberMe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Mandant ähnelt.
+        /// </summary>
+        internal static string inputTenant {
+            get {
+                return ResourceManager.GetString("inputTenant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die E-Mail oder Nutzername ähnelt.
+        /// </summary>
+        internal static string inputUsername {
+            get {
+                return ResourceManager.GetString("inputUsername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Orchestrator Login ähnelt.
+        /// </summary>
+        internal static string OrchestratorAuth {
+            get {
+                return ResourceManager.GetString("OrchestratorAuth", resourceCulture);
+            }
+        }
     }
 }

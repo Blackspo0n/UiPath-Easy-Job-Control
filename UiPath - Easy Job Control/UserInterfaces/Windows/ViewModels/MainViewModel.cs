@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using UiPathEJC.Components.Services;
 using UiPathEJC.UserInterfaces.Base;
+using UiPathEJC.UserInterfaces.Interface;
 using UiPathEJC.UserInterfaces.Views.ViewModels;
 
 // ReSharper disable ExplicitCallerInfoArgument
@@ -14,34 +15,6 @@ namespace UiPathEJC.UserInterfaces.Windows.ViewModels
     {
 
         #region Binding Properties
-        private bool _isDialogOpen;
-        public bool IsDialogOpen
-        {
-            get => _isDialogOpen;
-            set
-            {
-                if (value == _isDialogOpen) return;
-
-                _isDialogOpen = value;
-                OnPropertyChanged();
-
-            }
-        }
-
-        private object _dialogContent;
-
-        public object DialogContent
-        {
-            get => _dialogContent;
-            set
-            {
-                if (value == _dialogContent) return;
-
-                _dialogContent = value;
-                OnPropertyChanged();
-            }
-        }
-        
 
         public INavigationItem CurrentContent
         {
